@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Drag and Drop</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            font-family: 'Poppins', sans-serif;
+            box-sizing: border-box;
+        }
+
+        .container {
+            width: 100%;
+            min-height: 100vh;
+            background: #0b0423;
+            color: white;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .left ,.right{
+            width: 300px;
+            min-height: 400px;
+            margin: 20px;
+            border: 2px dashed #fff;
+        }
+
+        .list{
+            background: #e91e63;
+            height: 60px;
+            margin: 30px;
+            color: #fff;
+            display: flex;
+            align-items: center;
+            cursor: grab;
+            padding: 10px;
+        }
+
+        
+
+
+
+
+        
+    </style>
+</head>
+
+<body>
+
+    <div class="container">
+        <div class="left">
+            <div class="list" draggable="true">List 1</div>
+            <div class="list" draggable="true">List 2</div>
+            <div class="list" draggable="true">List 3</div>
+            <div class="list" draggable="true">List 4</div>
+
+        </div>
+        <div class="right"></div>
+    </div>
+
+
+
+    <script>
+        let leftBox = document.querySelector(".left");
+        let lists = document.getElementsByClassName("list");
+        let rightBox = document.querySelector(".right");
+
+        for(list of lists){
+            list.addEventListener("dragstart",(e)=>{
+                let selected = e.target;
+
+                rightBox.addEventListener("dragover",function(e){
+                    e.preventDefault();
+                });
+
+                rightBox.addEventListener("drop",function(e){
+                    rightBox.appendChild(selected);
+                    selected=null;
+                    
+                })
+            })
+        }
+
+    </script>
+</body>
+
+</html>

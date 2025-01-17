@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="speak.js"></script>
+</head>
+
+<body>
+    <script>
+        function bol_bachan_bol(text) {
+            const text_to_speak = new SpeechSynthesisUtterance(text);
+
+            text_to_speak.rate = 1;
+            text_to_speak.volume = 4;
+            text_to_speak.pitch = 2;
+
+            window.speechSynthesis.speak(text_to_speak);
+        }
+
+        bol_bachan_bol("Hello,everyone");
+    </script>
+</body>
+
+</html>

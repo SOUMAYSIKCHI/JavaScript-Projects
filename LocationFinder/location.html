@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+
+        const fetchCityName = async(url)=>{
+            try{
+            const response = await fetch(url,{
+                headers: {
+                    "Accept": "application/json"
+                }
+                }
+            );
+            const data = await response.json();
+            const {sys,name} = data;
+            city = name;
+            }catch(error){
+                console.log(error);
+            }
+            
+        }
+        const loadFirst = () => {
+            if (navigator.geolocation) {
+                navigator.geolocation.getCurrentPosition((position) => {
+                    const {latitude,longitude} = position.coords;
+                    const url = `https://api.openweathermap.org/data/2.5/weather?lat=${latitude}&lon=${longitude}&appid=8d772e24ff80ae6653f2e285e6b6c3f5`;
+                    fetchCityName(url);
+                }, (error) => {
+                    console.log(error.message);
+                })
+            }
+        }
+
+        loadFirst();
+    </script>
+</body>
+
+</html>

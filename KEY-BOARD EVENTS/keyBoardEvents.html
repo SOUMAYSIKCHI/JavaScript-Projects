@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Key-Board Events</title>
+    <style>
+        body{
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            margin-top: 10rem;
+            background-color: black;
+        }
+        .keyPressed,.keyCode,.charCode,.eventType{
+            color: #f5ee62;
+        }
+        #myInput{
+            height: 16px;
+            width: 200px;
+            padding: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div>
+        <input type="text" id="myInput" placeholder="Type Something">
+        <div class="output">
+            <p class="keyPressed">Key Pressed:</p>
+            <p class="keyCode">Key Code:</p>
+            <p class="charCode">Char Code at:</p>
+            <p class="eventType">Event Type:</p>
+        </div>
+    </div>
+
+    <script>
+        let inp = document.querySelector('#myInput');
+
+        const handlekeyPress = (event)=>{
+            document.querySelector('.keyPressed').textContent= `keyPressed : ${event.key}`
+            document.querySelector('.charCode').textContent= `keyCode : ${event.key.charCodeAt(0)}`
+            document.querySelector('.keyCode').textContent= `keyCode : ${event.code}`
+            document.querySelector('.eventType').textContent= `keyType: ${event.type}`
+        }
+        // inp.addEventListener('keydown',handlekeyPress);   
+        inp.addEventListener('keyup',handlekeyPress);
+
+
+    </script>
+</body>
+</html>

@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mobile Phone Data</title>
+    <style>
+        .myTable{
+            width: 100%;
+        }
+        table{
+            border: 2px solid black;
+        }
+        th{
+            border-bottom: 2px solid black;
+        }
+        tr{
+           text-align: center;
+        }
+        td{
+            border: 1px solid black;
+        }
+        input{
+            width: 90%;
+            padding: 10px;
+            margin-bottom: 10px;
+        }
+    </style>
+</head>
+<body>
+    <h2 style="text-align: center; text-transform: uppercase; color: green;">Products</h2>
+    <input type="text" name="" class="myInput" placeholder="Search...." onkeyup="searchfun()">
+    <table class="myTable" cellpadding="10" cellspacing="0">
+        <thead class="header">
+            <tr>
+                <th style="width: 40%;">Brand</th>
+                <th style="width: 30%;">Model</th>
+                <th style="width: 30%;">Price</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>Apple</td>
+                <td>iPhone 14 Pro</td>
+                <td>$999</td>
+            </tr>
+            <tr>
+                <td>Samsung</td>
+                <td>Galaxy S23 Ultra</td>
+                <td>$1199</td>
+            </tr>
+            <tr>
+                <td>Google</td>
+                <td>Pixel 7 Pro</td>
+                <td>$899</td>
+            </tr>
+            <tr>
+                <td>OnePlus</td>
+                <td>OnePlus 11</td>
+                <td>$699</td>
+            </tr>
+            <tr>
+                <td>Xiaomi</td>
+                <td>Mi 12</td>
+                <td>$799</td>
+            </tr>
+            <tr>
+                <td>Oppo</td>
+                <td>Find X5 Pro</td>
+                <td>$949</td>
+            </tr>
+            <tr>
+                <td>Vivo</td>
+                <td>X90 Pro</td>
+                <td>$899</td>
+            </tr>
+            <tr>
+                <td>Realme</td>
+                <td>GT 2 Pro</td>
+                <td>$749</td>
+            </tr>
+            <tr>
+                <td>Motorola</td>
+                <td>Edge 30 Pro</td>
+                <td>$799</td>
+            </tr>
+            <tr>
+                <td>Nokia</td>
+                <td>G50</td>
+                <td>$499</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <script>
+        const searchfun = () =>{
+            let filter = document.querySelector('.myInput').value.toUpperCase();
+            console.log(filter);
+            let myTable = document.querySelector('.myTable');
+
+            let tr = myTable.getElementsByTagName('tr');
+
+            for(var i = 0; i<tr.length; i++){
+                let td = tr[i].getElementsByTagName('td')[0];
+
+                if(td){
+                    let textval = td.textContent||td.innerHTML;
+                    if(textval.toUpperCase().indexOf(filter)>-1){
+                        tr[i].style.display="";
+                    }else{
+                        tr[i].style.display="none";
+                    }
+                }
+            }
+
+        }
+    </script>
+</body>
+</html>
+
+</body>
+</html>

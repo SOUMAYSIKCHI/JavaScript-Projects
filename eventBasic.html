@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <!-- inline event -->
+     <h1>Inline Event</h1>
+     <button onclick="alert('hello')">On Click</button>
+     <button ondblclick="alert('Welcome')">On Double Click</button>
+     <button onmouseover="alert('Welcome')">On Mouse Over</button>
+     <hr>
+   <!-- End inline event -->
+
+   <!-- Dom Event Handler -->
+    <h1>DOM EventHandler</h1>
+    <button id="myBtn2">Greetings</button>
+    <button id="myBtn3">Greetings Again</button>
+    <hr>
+    <!-- END -->
+
+    <!-- EVENT LISTENER  -->
+    <h1>addEventListener EventHandler</h1>
+    <button id="myBtn4">Greetings</button>
+    <button id="myBtn5">Greetings Again</button>
+
+    <!-- Script -->
+    <script>
+        let btn2 = document.getElementById("myBtn2");
+        btn2.onclick = ()=>{
+            alert('Hello');
+        };
+
+        document.getElementById("myBtn3").ondblclick =()=>{
+            alert('Hello');
+        };
+
+        document.getElementById("myBtn4").addEventListener('click',()=>{
+            alert('Hello');
+        });
+        document.getElementById("myBtn5").addEventListener('click',
+            function(){ alert('Namaste ji')}
+        );
+       
+    </script>
+
+    
+</body>
+</html>

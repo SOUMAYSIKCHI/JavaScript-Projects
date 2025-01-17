@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        .mainDiv {
+            width: 100%;
+            height: 100vh;
+            position: relative;
+            background-color: #3498db;
+        }
+
+        .centerDiv {
+            text-align: center;
+            position: absolute;
+            left: 50%;
+            top: 50%;
+            transform: translate(-50%, -50%);
+        }
+
+        #btn {
+            border-radius: 5px;
+            height: 30px;
+            width: 160px;
+            background-color: rgb(145, 9, 84);
+            color: aliceblue;
+            font-size: 18px;
+        }
+
+        textarea {
+            resize: none;
+            padding: 20px;
+        }
+
+        #msg {
+            margin-top: 20px;
+        }
+
+        .correct {
+            color: black;
+        }
+
+        .incorrect {
+            color: red;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="mainDiv">
+        <div class="centerDiv">
+            <h1>Welcome to type Speed test</h1>
+            <h2 id="msg"></h2>
+            <br>
+            <textarea name="mywords" id="mywords" cols="100" rows="10" placeholder="Type here...">
+            </textarea>
+            <br>
+            <button class="mainbtn" id="btn">Start</button>
+        </div>
+    </div>
+    <script>
+        let sentences = [
+            "The quick brown fox jumps over the lazy dog, a phrase commonly used to test typewriters and fonts because it contains every letter of the alphabet. This sentence has been known for decades and is often seen in various languages and contexts. It’s also used by people practicing touch typing. While it may not have a deep meaning, its utility in language exercises is undeniable. Over time, many variations have been created, but the original version remains the most popular. Who would have thought such a simple sentence could have such importance?",
+
+            "Artificial intelligence has made significant progress in recent years, transforming industries like healthcare, finance, and transportation. From chatbots to self-driving cars, AI is reshaping the way we live and work. Machine learning algorithms have enabled systems to learn from data, improving their accuracy and efficiency. This has led to the development of more personalized services, like recommendations on streaming platforms and predictive text. However, AI also raises ethical concerns, such as data privacy and job displacement. As AI continues to evolve, it will be essential to address these challenges to ensure a fair and equitable future.",
+
+            "The ocean is a vast, mysterious world that covers more than seventy percent of our planet's surface. It is home to millions of species, many of which are still undiscovered by science. The depths of the ocean remain one of the last unexplored frontiers, with new creatures being found regularly. Oceans regulate our climate, provide us with food, and generate most of the oxygen we breathe. However, they are under threat from pollution, overfishing, and climate change. Protecting our oceans is crucial for the survival of both marine life and humanity as a whole.",
+
+            "Reading books is one of the best ways to expand your knowledge and imagination. Whether it's fiction or non-fiction, books offer a wealth of information and experiences that can transport you to new worlds. In the digital age, reading has become more accessible, with e-books and audiobooks available at the touch of a button. While the format may have changed, the value of reading remains the same. It's a powerful tool for personal growth, critical thinking, and empathy. By immersing yourself in a book, you can escape reality and gain new perspectives on life.",
+
+            "Traveling to new destinations is an exciting way to experience different cultures and lifestyles. Every place has its unique history, food, and traditions that offer a glimpse into the lives of its people. Whether you're exploring ancient ruins, hiking through nature, or enjoying local cuisine, travel provides opportunities for adventure and learning. It can also be a great way to meet new people and create lifelong memories. However, it’s important to travel responsibly by respecting the environment and local customs. Sustainable tourism ensures that future generations can enjoy the same beautiful landscapes and cultures we experience today."
+        ];
+        const msg = document.querySelector('#msg');
+        const typewords = document.querySelector('#mywords');
+        const btn = document.querySelector('#btn');
+        let startTime, endTime;
+        let randomSentence;
+        typewords.disabled = true;
+        let randomnumber;
+        let cnt = 0;
+        const playGame = () => {
+            randomnumber = Math.floor(Math.random() * 5);
+            randomSentence = sentences[randomnumber];
+            msg.innerText = sentences[randomnumber];
+            typewords.focus();
+            let date = new Date();
+            startTime = date.getTime();
+            btn.innerText = "Done";
+        }
+        const compareWords = (str1, str2) => {
+            let w1 = str1.trim().split(" ");
+            let w2 = str2.trim().split(" ");
+            w1.forEach((ele, idx) => {
+                if (ele == w2[idx]) {
+                    cnt++;
+                }
+            });
+            return cnt;
+        }
+
+
+        const endGame = () => {
+            let date = new Date();
+            endTime = date.getTime();
+            let totalTime = ((endTime - startTime) / 1000).toFixed(2); // Keep time in seconds
+            msg.innerText = `Total time taken is ${totalTime}`;
+            let totalStr = typewords.value.trim();
+            typewords.value = "";
+            console.log(sentences[randomnumber]);
+            let wordCount = wordCounter(totalStr);
+            let speed = Math.round((wordCount / totalTime) * 60); // Words per minute
+            cnt = 0;
+            let crctWords = compareWords(totalStr, sentences[randomnumber]);
+            msg.innerText = `Total time taken: ${totalTime}s | Words typed: ${wordCount} | Speed: ${speed} WPM | Correct words: ${crctWords}`;
+        }
+
+        const wordCounter = (str) => {
+            let arrlen = str.split(" ").length;
+            return arrlen;
+        }
+
+
+        btn.addEventListener('click', function () {
+            if (this.innerText == 'Start') {
+                // console.log(this.innerText);
+                typewords.disabled = false;
+                playGame();
+            } else if (this.innerText == 'Done') {
+                typewords.disabled = true;
+                btn.innerText = "Start";
+                endGame();
+            }
+        })
+
+        typewords.addEventListener('input', () => {
+            const userText = typewords.value;
+            // console.log(randomSentence);
+            msg.innerHTML = '';
+            for (let i = 0; i < randomSentence.length; i++) {
+                const span = document.createElement("span");
+                span.innerText = randomSentence[i] || '';
+                if (userText[i] === randomSentence[i]) {
+                    span.classList.add("correct");
+                } else if (userText[i]) {
+                    span.classList.add("incorrect");
+                }
+                msg.appendChild(span);
+            }
+        })
+
+    </script>
+</body>
+
+</html>

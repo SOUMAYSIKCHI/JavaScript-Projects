@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Image-Search Engine</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+        }
+
+        body {
+            background-color: #39297b;
+            color: #fff;
+        }
+
+        .container {
+            max-width: 1080px;
+            margin: 0 auto;
+        }
+
+        h1 {
+            margin-top: 60px;
+            margin-bottom: 60px;
+            text-align: center;
+        }
+
+        form {
+            width: 90%;
+            max-width: 600px;
+            margin: auto;
+            height: 80px;
+            background: #434989;
+            display: flex;
+            align-items: center;
+        }
+
+        form input {
+            flex: 1;
+            height: 100%;
+            border: 0;
+            outline: 0;
+            background: transparent;
+            font-size: 18px;
+            padding: 0 30px;
+            border-radius: 8px;
+        }
+
+        form button {
+            padding: 0 40px;
+            height: 100%;
+            background: #ff3929;
+            color: white;
+            font-size: 18px;
+            border: 0;
+            outline: 0;
+            border-radius: 8px;
+            cursor: pointer;
+
+        }
+
+        ::placeholder {
+            color: white;
+        }
+
+        .show-more-btn {
+            padding: 0 40px;
+            height: 50px;
+            background: #ff3929;
+            color: white;
+            font-size: 18px;
+            border: 0;
+            outline: 0;
+            border-radius: 8px;
+            display: none;
+            margin: 10px auto 100px;
+            cursor: pointer;
+        }
+
+        .search-result{
+            margin-top: 100px;
+            width: 80%;
+            display: grid;
+            margin: 100px auto 100px;
+            grid-template-columns: 1fr 1fr 1fr;
+            grid-gap: 40px;
+
+        }
+        .search-result img{
+            width: 100%;
+            height: 230px;
+            object-fit: cover;
+            border-radius: 5px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <h1>Image Search Engine</h1>
+
+        <form id="search-form">
+            <input type="text" id="search-box" placeholder="Enter name of your image to search....">
+            <button class="search-btn">Search</button>
+        </form>
+
+        <div class="search-result"></div>
+        <button class="show-more-btn">Show More</button>
+
+    </div>
+    <script>
+        const accessKey = 'k_sOrHytc8GWb4a4o6MDFwb340TgRboNg7crr01jngs';
+        const searchForm = document.querySelector("#search-form");
+        const searchBox = document.querySelector("#search-box");
+        const searchButton = document.querySelector('.search-btn');
+        const searchResult = document.querySelector(".search-result");
+        const showMoreBtn = document.querySelector(".show-more-btn");
+
+        let keyword = "";
+        let page = 1;
+
+
+
+        const searchImages = async () => {
+            keyword = searchBox.value;
+            searchResult.innerHTML = ""; // Clear previous results
+            try {
+                const url = `https://api.unsplash.com/search/photos?page=${page}&query=${keyword}&client_id=${accessKey}&per_page=12`;
+                const response = await fetch(url);
+                if (!response.ok) {
+                    const errorMessage = await response.text();
+                    console.error("Error fetching data:", errorMessage);
+                    alert("Error fetching data: " + errorMessage);
+                    return;
+                }
+                const res = await response.json();
+                console.log(res);
+                const result = res.results;
+                result.map((re)=>{
+                    const image = document.createElement('img');
+                    image.src=re.urls.small;
+                    searchResult.appendChild(image);
+                })
+                showMoreBtn.style.display="block";
+            } catch (error) {
+                console.log(error);
+            }
+
+        };
+
+        searchForm.addEventListener("submit", (e) => {
+            e.preventDefault();
+            page = 1; // Reset page for new search
+            searchImages();
+        });
+
+        showMoreBtn.addEventListener("click", () => {
+            page++;
+            searchImages();
+        });
+
+    </script>
+</body>
+
+</html>

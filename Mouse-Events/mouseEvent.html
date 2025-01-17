@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MouseEvent</title>
+    <style>
+        * {
+            background-color: black;
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        section {
+            width: 100vw;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+
+        }
+
+        .rectangle {
+            margin-bottom: 30px;
+            height: 200px;
+            width: 200px;
+            background-color: #f5ee62;
+        }
+
+        #myButton {
+            display: block;
+            width: 200px;
+            height: 40px;
+            border: 2px solid black;
+            border-radius: 20px;
+            font-size: 20px;
+            font-weight: bold;
+            background-color: #f5ee62;
+        }
+
+        .addTransition2{
+            border-radius: 50%;
+        }
+        .addTransition3{
+            background-color: #f5ee62;
+            translate: 30rem 0;
+            transition: all linear 5s;
+        }
+
+        .addTransition4{
+            translate: -30rem 0;
+        }
+
+        /* .addTransition5{
+            translate: 0 30rem;
+        }
+
+        .addTransition6{
+            translate: 0 -30rem; 
+         }*/
+        
+    </style>
+</head>
+
+<body>
+    <section>
+        <div class="rectangle"></div>
+        <button id="myButton">Click me</button>
+    </section>
+
+    <script>
+        let rectdiv = document.querySelector('.rectangle');
+        let btn = document.getElementById('myButton');
+
+        const handleMouseEvent = () => {
+            console.log("click");
+            rectdiv.style.backgroundColor= "#f5ee";
+        }
+        const handleMouseEvent2 = () => {
+                rectdiv.classList.add("addTransition2")
+        }
+        const handleMouseEvent3 = () => {
+            rectdiv.classList.add("addTransition3")
+
+        }
+        const handleMouseEvent4 = () => {
+            rectdiv.classList.add("addTransition4")
+
+        }
+        const handleMouseEvent5 = () => {
+            rectdiv.classList.add("addTransition5")
+
+        }
+        const handleMouseEvent6 = () => {
+            rectdiv.classList.add("addTransition6")
+        }
+
+
+        btn.addEventListener('click', handleMouseEvent);
+        btn.addEventListener('dblclick', handleMouseEvent2);
+        rectdiv.addEventListener('mouseover', handleMouseEvent3);
+        rectdiv.addEventListener('mouseout', handleMouseEvent4);
+        rectdiv.addEventListener('mousedown', handleMouseEvent5);
+        rectdiv.addEventListener('mouseup', handleMouseEvent6);
+    </script>
+</body>
+
+</html>

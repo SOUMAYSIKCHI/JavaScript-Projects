@@ -1,0 +1,342 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ecommerce Demo</title>
+    <!-- <script src="https://cdn.tailwindcss.com"></script> -->
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        p {
+            font-size: 18px;
+        }
+
+        body {
+            background-color: #4b6a9b;
+
+        }
+
+        .container {
+            max-width: 1280px;
+            margin: 0 auto;
+        }
+
+        .grid {
+            margin-top: 50px;
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            /* grid-template-rows: repeat(4, 1fr); */
+            gap: 20px;
+        }
+
+        .box {
+            background-color: #f6f8ff;
+            padding: 20px;
+            box-shadow: rgba(50, 50, 93, 0.25) 0px 50px 100px -20px, rgba(0, 0, 0, 0.3) 0px 30px 60px -30px, rgba(10, 37, 64, 0.35) 0px -2px 6px 0px inset;
+        }
+
+        .box1 {
+            /* padding: 30px; */
+            background-color: #f6f8ff;
+            ;
+            grid-column: 1/4;
+            grid-row: 1/4;
+            display: flex;
+            flex-direction: column;
+            gap: 40px;
+        }
+
+        .box2 {
+            grid-row: 1/2;
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .box3 {
+            grid-row: 2/3;
+        }
+
+        .box4 {
+            grid-row: 3/4;
+
+            & .date-h1 {
+                margin-bottom: 20px;
+            }
+
+        }
+
+        .right {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+            width: 100%;
+        }
+
+        .end {
+            display: flex;
+            justify-content: space-between;
+        }
+
+        hr {
+            border: 1px solid black;
+        }
+
+        .card {
+            background-color: #f6f8ff;
+            display: flex;
+            flex-direction: row;
+            gap: 30px;
+        }
+
+        img {
+            height: 200px;
+            border-radius: 10px;
+            box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px, rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px, rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;
+        }
+
+        .right {
+            background-color: #f6f8ff;
+
+        }
+
+        .space-btw,
+        .top {
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .counter-container {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-family: Arial, sans-serif;
+        }
+
+        .counter-container button {
+            width: 30px;
+            height: 20px;
+            font-size: 20px;
+            background-color: #2e7eed;
+            /* border: 1px solid #ccc; */
+            cursor: pointer;
+            color: white;
+            border: none;
+            outline: none;
+        }
+
+        .counter-container input {
+            width: 50px;
+            height: 20px;
+            text-align: center;
+            font-size: 13px;
+            border: none;
+            border: 1px solid #ccc;
+            /* margin: 0 5px; */
+        }
+
+        .discount-div {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 5px;
+        }
+
+        .hidden {
+            display: none;
+            margin-top: 20px;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+
+            & p {
+                /* display: none; */
+                font-size: 14px;
+            }
+
+            & button {
+                /* display: none; */
+                /* display: inline-block; */
+                color: #f6f8ff;
+                font-weight: 400;
+                background-color: #2e7eed;
+                padding: 12px;
+                height: 35px;
+                width: 140px;
+                font-size: 16px;
+                border-radius: 5px;
+            }
+
+            & input {
+                /* display: none; */
+                padding: 8px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <div class="grid">
+            <div class="box1 box">
+                <div class="card card1">
+                    <img src="https://plus.unsplash.com/premium_photo-1678218594563-9fe0d16c6838?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MXx8c2hpcnR8ZW58MHx8MHx8fDA%3D"
+                        alt="">
+                    <div class="right">
+                        <div class="top">
+                            <h2>Blue Zara Shirt</h2>
+                            <div class="counter-container">
+                                <button class="decr">-</button>
+                                <input type="text" id="counter" value="1" readonly>
+                                <button class="incr">+</button>
+                            </div>
+                        </div>
+                        <div class="between">
+                            <p>Shirt: Blue</p>
+                            <p>Color: Blue</p>
+                            <p>Size:xl</p>
+                        </div>
+                        <div class="end">
+                            <p>Remove item</p>
+                            <p>Move to wishlist</p>
+                            <p>Rs.<span class="card-amount" data-price="50">50</span></p>
+                        </div>
+                    </div>
+                </div>
+                <hr>
+                <div class="card card2">
+                    <img src="https://images.unsplash.com/photo-1578587018452-892bacefd3f2?q=80&w=1887&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+                        alt="">
+                    <div class="right">
+                        <div class="top">
+                            <h2>Orange Zara T-Shirt</h2>
+                            <div class="counter-container">
+                                <button class="decr">-</button>
+                                <input type="text" id="counter" value="1" readonly>
+                                <button class="incr">+</button>
+                            </div>
+                        </div>
+                        <div class="between">
+                            <p>Shirt: Blue</p>
+                            <p>Color: Blue</p>
+                            <p>Size:xl</p>
+                        </div>
+                        <div class="end">
+                            <p>Remove item</p>
+                            <p>Move to wishlist</p>
+                            <p>Rs.<span class="card-amount" data-price="222">222</span></p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="box2 box">
+                <h3>The Total Amount Of</h3>
+                <div class="product-amt space-btw">
+                    <h4>Product Amount: </h4>
+                    <p class="amount">100</p>
+                </div>
+                <div class="shippping-amt space-btw">
+                    <h4>Shipping Amount: </h4>
+                    <p class="shipping-amount">25</p>
+                </div>
+                <hr>
+                <div class="total-amt space-btw">
+                    <h4>Total Amount: </h4>
+                    <p class="total-amount">125</p>
+                </div>
+            </div>
+            <div class="box3 box">
+                <div class="discount-div">
+                    <h3>Add a discount code (optional)</h3>
+                    <span style="font-size: 18px; font-weight: bold; cursor: pointer;" class="upsidedown">v</span>
+                </div>
+                <div class="hidden">
+                    <input class="inpType" type="text" placeholder="Enter coupon code">
+                    <p class="coupon-validity">Enter a valid code</p>
+                    <button>Apply</button>
+                </div>
+            </div>
+            <div class="box4 box">
+                <p class="date-h1">Expected Delivery Date</p>
+                <p class="date">July 27th- July 29th 2020</p>
+            </div>
+        </div>
+    </div>
+    <script>
+
+
+        const incrBtn = document.querySelectorAll('.incr');
+        const decrBtn = document.querySelectorAll('.decr');
+        let productAmount = document.querySelector('.amount');
+        let totalAmount = document.querySelector('.total-amount');
+        let cardAmounts = document.querySelectorAll('.card-amount');
+        let shippingAmount = document.querySelector('.shipping-amount').textContent;
+        let upsidebtn = document.querySelector('.upsidedown');
+        let hidden = document.querySelector('.hidden');
+        let open = false;
+        upsidebtn.addEventListener('click',()=>{
+            if(open){
+                hidden.style.display="block";
+                open=false;
+            }else{  
+                hidden.style.display="none";
+                open=true;
+            }
+        })
+        function updateAmounts() {
+            let totalProductAmount = 0;
+
+            cardAmounts.forEach((cardAmount) => {
+                console.log(cardAmount);
+                // Retrieve the base price from data-price attribute
+                let basePrice = parseInt(cardAmount.getAttribute('data-price'));
+                console.log(cardAmount.getAttribute('data-price'));
+                // Get the quantity of each item
+                let quantity = parseInt(cardAmount.closest('.card').querySelector('#counter').value);
+
+                // Calculate item price based on quantity and base price
+                let itemPrice = basePrice * quantity;
+                cardAmount.textContent = itemPrice; // Update the display
+
+                // Add to total product amount
+                totalProductAmount += itemPrice;
+            });
+
+            // Update product amount
+            productAmount.textContent = totalProductAmount;
+
+            // Calculate total amount including shipping
+            totalAmount.textContent = totalProductAmount + parseInt(shippingAmount);
+        }
+
+        // Increment button click event
+        incrBtn.forEach((btn, index) => {
+            btn.addEventListener('click', () => {
+                let inputEle = btn.previousElementSibling;
+                inputEle.value = parseInt(inputEle.value) + 1;
+                updateAmounts();
+            });
+        });
+
+        // Decrement button click event
+        decrBtn.forEach((btn, index) => {
+            btn.addEventListener('click', () => {
+                let inputEle = btn.nextElementSibling;
+                if (parseInt(inputEle.value) > 1) {
+                    inputEle.value = parseInt(inputEle.value) - 1;
+                    updateAmounts();
+                }
+            });
+        });
+
+
+    </script>
+</body>
+
+</html>

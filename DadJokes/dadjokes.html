@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Jokes</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            font-family: "Urbanist", sans-serif;
+        }
+
+        html {
+            color: #fff;
+            font-size: 62.5%;
+        }
+
+        body {
+            width: 100%;
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background-color: #1b1b1d;
+        }
+
+        .container {
+            background-color: rgb(255, 255, 255);
+            text-align: center;
+            padding: 2.4rem 6.4rem;
+            border-radius: 0.6rem;
+            color: #000;
+            min-width: 32rem;
+        }
+
+        .api_body {
+            font-size: 1.7rem;
+            letter-spacing: 0.1rem;
+            margin-bottom: 2rem;
+            margin-top: 1rem;
+        }
+
+        button {
+            height: 5rem;
+        }
+
+        h1 {
+            font-size: 3.6rem;
+        }
+
+        hr {
+            margin-bottom: 3.2rem;
+        }
+
+        p,
+        li,
+        button {
+            font-size: 1.7rem;
+            letter-spacing: 0.1rem;
+            font-family: "Urbanist", sans-serif;
+            line-height: 1.6;
+        }
+
+        button {
+            background-color: #f5ee62;
+            padding: 0.6rem 2.4rem;
+            border-radius: 10rem;
+            margin-right: 3.6rem;
+            cursor: pointer;
+            transition: all 0.3s linear;
+
+            &:hover {
+                box-shadow: inset 0 0 0 0.2rem #f5ee62;
+                background-color: transparent;
+                color: #f5ee62;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <h1>Welcome to Jokes!</h1>
+        <section class="api_body"></section>
+        <button id="fetchJoke">Get Another Joke</button>
+    </div>
+
+    <script>
+        const apiBody = document.querySelector('.api_body');
+        const apiUrl = "https://icanhazdadjoke.com/";
+
+
+        window.addEventListener("offline",()=>{
+           console.log("offline");
+        });
+
+        const fetchData = () => {
+            const response = fetch(apiUrl, {
+                headers: {
+                    "Accept": "application/json"
+                },
+                }).then((res) => {
+                    return res.json();
+                })
+                .then((data) => {
+                    apiBody.textContent = data.joke;
+                })
+                .catch((err) => {
+                   
+                        
+                }
+            )
+        }
+
+        fetchData();
+       
+
+        document.getElementById("fetchJoke").addEventListener("click", fetchData);
+
+    </script>
+</body>
+
+</html>

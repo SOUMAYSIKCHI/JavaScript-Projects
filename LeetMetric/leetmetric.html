@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Leet-Metric</title>
+</head>
+<style>
+    *{
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-family:'Times New Roman', Times, serif;
+    }
+    body{
+        background-color: rgb(111, 110, 151);
+        color: white;
+        min-height: 100vh;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .container{
+        display: flex;
+        flex-direction: column;
+        gap: 1rem;
+        background-color: rgb(38, 37, 37);
+        padding: 20px;
+        border-radius: 5px;
+        max-width: 600px;
+        width: 50%;
+    }
+    h1{
+        font-size: 1.7rem;
+        text-align: center;
+    }
+
+    .user-container{
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+        justify-content: flex-start;
+    }
+
+    .user-container p{
+        font-size: 1.2rem;
+    }
+    .user-input-container{
+        display: flex;
+        justify-content: space-between;
+        margin-bottom: 3rem;
+    }
+
+    #user-input{
+        width: 80%;
+        padding: 0.4rem;
+        border-radius: 5px;
+    }
+
+    #search-btn{
+        width: 15%;
+        padding: 0.4rem;
+        border-radius: 5px;
+    }
+    .stats-container{
+        display: none;
+    }
+
+    .start{
+        display: block;
+    }
+
+    .circle{
+        width: 120px;
+        height: 120px;
+        border-radius: 50%;
+        border: 4px solid green;
+        position: relative;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 16px;
+        color: azure;
+        font-weight: 700;
+        flex-direction: column;
+        background: conic-gradient(green var(--progress-degree,0%),#283a2e 0%);
+    }
+
+    .circle span{
+        position: relative;
+        z-index: 2;
+    }
+
+    .progress{
+        display: flex;
+        flex-direction: row;
+        justify-content: space-evenly;
+        flex-wrap: wrap;
+        gap: 10px;
+    }
+    
+
+
+
+
+</style>
+<body>
+
+    <div class="container">
+        <!-- heading  start -->
+        <h1>LeetMetric</h1>
+        <!-- heading end -->
+
+        <!-- user container start -->
+        <div class="user-container ">
+            <p>Enter your username below:</p>
+            <!-- user input  -->
+            <div class="user-input-container">
+                <!-- input box -->
+                <input type="text" placeholder="Enter your usename here..." id="user-input">
+                <!-- search btn -->
+                <button id="search-btn">Search</button>
+            </div>
+        </div>
+        <!-- User container end -->
+
+        <!-- Stats - container start -->
+        <div class="stats-container">
+            <!-- Progress container start -->
+            <div class="progress">
+                <!-- Easy-progress item -->
+                <div class="progress-item">
+                    <div class="easy-progress circle">
+                        <span id="easy-label"></span>
+        
+                        <p>Easy</p>
+                    </div>
+                </div>
+                <!-- Medium-progress item -->
+                <div class="progress-item">
+                    <div class="medium-progress circle">
+                        <span id="medium-label"></span>
+                        <p>Medium</p>
+                    </div>
+                </div>
+                <!-- Hard progress item -->
+                <div class="progress-item">
+                    <div class="hard-progress circle">
+                        <span id="hard-label"></span>
+                        <p>Hard</p>
+                    </div>
+                </div>
+            </div>
+            <!-- progress container end -->
+
+
+            <!-- stats card -->
+            <div class="stats-card">
+                <!-- Directly populate card here from the JS code -->
+            </div>
+
+        </div>
+
+        <!-- stats container end -->
+
+    </div>
+
+    
+
+    <script src="leetmetric.js"></script>
+</body>
+</html>

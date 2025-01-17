@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Soumay Sikchi</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        .cmnbtn:hover {
+            /* transition: all linear 2s; */
+            box-shadow: rgba(0, 0, 0, 0.17) 0px -23px 25px 0px inset, rgba(0, 0, 0, 0.15) 0px -36px 30px 0px inset, rgba(0, 0, 0, 0.1) 0px -79px 40px 0px inset, rgba(0, 0, 0, 0.06) 0px 2px 1px, rgba(0, 0, 0, 0.09) 0px 4px 2px, rgba(0, 0, 0, 0.09) 0px 8px 4px, rgba(0, 0, 0, 0.09) 0px 16px 8px, rgba(0, 0, 0, 0.09) 0px 32px 16px;
+        }
+
+        .todolist {
+            max-width: 1080px;
+            margin-top: 20px;
+        }
+
+        .main-to-do {
+            width: 100%;
+            font-size: 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-end;
+            flex-wrap: wrap;
+            margin-top: 15px;
+        }
+        
+
+    </style>
+</head>
+
+<body class="bg-black text-white">
+    <div class="max-w-[1080px] mx-auto bg-black">
+        <h1 class="heading text-white text-center font-bold text-[28px] mt-5">TO-DO APPLICATION</h1>
+        <br>
+        <form action="">
+            <div class=" flex flex-col md:flex justify-center mt-[60px] items-center ">
+                <input type="text" id="inputValue"
+                    class="name text-black inputData m-5 font-bold border-2 py-2 px-8 rounded-md "
+                    placeholder="Enter the task to add">
+                <button
+                    class="btn inline-block cmnbtn w-16 text-[10px] font-bold md:font-bold text-[23px] text-black rounded-md bg-amber-400 w-36 h-12 ">Add
+                    To-do</button>
+            </div>
+            <section class="todolist">
+
+            </section>
+        </form>
+    </div>
+
+
+
+    <script>
+        let inpVal = document.getElementById("inputValue");
+        let btn = document.querySelector(".btn");
+        let maintodolis = document.querySelector(".todolist");
+        let dltbtn = document.querySelector('.dltbtn');
+
+        const getTodoListfromLocal = () => JSON.parse(localStorage.getItem('tododata'));
+
+        let todoitems = getTodoListfromLocal() || [];
+
+        const showtodoList = () => {
+            todoitems.forEach(element => {
+                loadDataDynamically(element);
+            });
+        }
+
+        const loadDataDynamically = (element) => {
+            let div = document.createElement("div");
+            div.classList.add('main-to-do');
+            div.innerHTML = `<li class="text-[24px]">${element}</li>
+                    <button class="dltbtn cmnbtn inline-block  font-bold text-[20px] text-black rounded-md bg-amber-400 w-32 h-10">Delete</button>
+                `;
+            maintodolis.append(div);
+        }
+
+        const addTodoList = (e) => {
+            e.preventDefault();
+            if (inpVal.value !== "" && !todoitems.includes(inpVal.value.trim())) {
+                todoitems.push(inpVal.value.trim());
+                todoitems = [... new Set(todoitems)];
+                localStorage.setItem("tododata", JSON.stringify(todoitems));
+                let div = document.createElement("div");
+                div.classList.add('main-to-do');
+                div.innerHTML = `<li class="text-[24px]">${inpVal.value.trim()}</li>
+                    <button class="dltbtn cmnbtn inline-block  font-bold text-[20px] text-black rounded-md bg-amber-400 w-32 h-10">Delete</button>
+                `;
+                maintodolis.append(div);
+            }
+            inpVal.value = "";
+        }
+        const removefromLocalStorage = (todoitems) => {
+            localStorage.setItem("tododata", JSON.stringify(todoitems));
+        }
+
+        const removetodoEle = (e) => {
+            const todoToRemove = e.target;
+            let todolistContent = todoToRemove.previousElementSibling.innerText;
+            let parentEle = todoToRemove.parentElement;
+
+            // Filter out the item to be removed without converting to lowercase
+            todoitems = todoitems.filter((ele) => {
+                return ele !== todolistContent;
+            });
+
+            removefromLocalStorage(todoitems);
+            parentEle.remove();
+        }
+
+
+        btn.addEventListener('click', (e) => {
+            addTodoList(e);
+        });
+
+        maintodolis.addEventListener('click', (e) => {
+            e.preventDefault();
+            if (e.target.classList.contains("dltbtn")) {
+                removetodoEle(e);
+            }
+        })
+
+        showtodoList();
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Toast notification</title>
+    <script src="https://kit.fontawesome.com/8e3ab46b30.js" crossorigin="anonymous"></script>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        .buttons{
+            margin: 40px;
+        }
+
+        .buttons button{
+            background-color: black;
+            color: aliceblue;
+            font-size: 16px;
+            cursor: pointer;
+            margin-right: 20px;
+            display: inline-block;
+            width: 120px;
+            padding: 10px 17px;
+        }
+        .toastBox{
+            position: absolute;
+            bottom: 30px;
+            right: 30px;
+            display: flex;
+            align-items: flex-end;
+            flex-direction: column;
+            overflow: hidden;
+            padding: 20px;
+            
+        }
+        .toast{
+            margin: 15px 0px;
+            width: 300px;
+            height: 60px;
+            padding: 10px 40px;
+            box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+            display: flex;
+            align-items: center;
+            font-size: large;
+            position: relative;
+            transform: translateX(100%);
+            animation : moveleft 0.5s linear forwards
+        }
+
+        .success i{
+            padding: 10px;
+            color: green;
+        }
+
+        .error i{
+            color: red;
+        }
+        .invalid i{
+            padding: 10px;
+            color:orange;
+        }
+
+        .toast::after{
+            content: '';
+            position: absolute;
+            left: 0;
+            bottom: 0;
+            width: 100%;
+            height: 5px;
+            background: green;
+            animation: animR 5s linear forwards 
+        }
+        .success::after{
+            background-color: green;
+        }
+
+        .error::after{
+            background-color: red;
+        }
+
+        .invalid::after{
+            background-color: orange;
+        }
+
+        @keyframes moveleft {
+            100%{
+                transform: translate(0%);
+            }
+            
+        }
+        @keyframes animR{
+            100%{
+                width: 0;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="buttons">
+        <button class="success">Success</button>
+        <button class="error">Error</button>
+        <button class="invalid">Invalid</button>
+    </div>
+
+    <div class="toastBox"></div>
+
+    <script>
+        let toastBox = document.querySelector('.toastBox');
+
+        const toastNotification = (msg)=>{
+            let ele = document.createElement('div');
+            ele.classList.add('toast');
+            ele.innerHTML=msg;
+            toastBox.appendChild(ele); 
+            if(msg.includes('error')){
+                ele.classList.add('error');
+            }
+            if(msg.includes('Invalid')){
+                ele.classList.add('invalid');
+            }else{
+                ele.classList.add('success');
+            }
+            setTimeout(()=>{
+                ele.remove();
+            },5000);
+
+        }
+
+        document.querySelector('.success').addEventListener('click',()=>{
+            toastNotification(`<i class="fa-regular fa-circle-check"></i> Successfully Submitted`);
+        })
+        document.querySelector('.error').addEventListener('click',()=>{
+            toastNotification(`<i class="fa-solid fa-circle-xmark"></i> Please fix the error!`);
+
+        })
+        document.querySelector('.invalid').addEventListener('click',()=>{
+            toastNotification(`<i class="fa-solid fa-circle-exclamation"></i> Invalid input,check again`);
+
+        })
+
+
+    </script>
+</body>
+</html>

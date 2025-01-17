@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Custom Select Menu</title>
+    <script src="https://kit.fontawesome.com/8e3ab46b30.js" crossorigin="anonymous"></script>
+    <style>
+         *{
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        .hero{
+            width: 100%;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-image: linear-gradient(#f44336,#730228);
+        }
+
+        .selector{
+            width: 250px;
+        }
+        #selectfield{
+            width: 100%;
+            padding: 15px 20px;
+            border-radius: 6px;
+            background: rgba(255,255,255,0.7);
+            margin-bottom: 30px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            cursor: pointer;
+        }
+        #selectfield i{
+            margin-left: 20px;
+        }
+
+        .list{
+            width: 100%;
+            background: rgba(255,255,255,0.7);
+            border-radius: 6px;
+            overflow-x: hidden;
+        }
+
+        .option{
+            width: 100%;
+            padding: 15px;
+            cursor: pointer;
+            list-style: none;
+            padding:10px 30px;
+        }
+
+        .option:hover{
+            background: rgba(255,255,255,0.7);
+        }
+
+        .hide{
+            visibility: hidden;
+        }
+        
+    </style>
+</head>
+<body>
+    <div class="hero">
+        <div class="selector">
+            <div id="selectfield">
+                <p class="selectedText">Select Social Media</p>
+                <i class="fa-solid fa-caret-down"></i>
+            </div>
+            <ul class="list hide">
+                <li class="option">Instagram</li>
+                <li class="option">Facebook</li>
+                <li class="option" >Youtube</li>
+                <li class="option" >Whats'app</li>
+                <li class="option" >Twitter</li>
+            </ul>
+        </div>
+    </div>
+    <script>
+        var selectField = document.querySelector("#selectfield");
+        var selectText = document.querySelector(".selectedText");
+        var options = document.getElementsByClassName("option");
+        var lists = document.querySelector(".list");
+        for(opt of options){
+            opt.onclick = function(){
+                selectText.innerHTML = this.textContent;
+                lists.classList.toggle("hide");
+            }
+        }
+
+        selectField.addEventListener('click',()=>{
+            lists.classList.toggle("hide");
+        })
+
+        
+    </script>
+</body>
+</html>

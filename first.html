@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>Best Js Course</h1>
+    <p>Hello,this is p tag </p>
+    <hr>
+    <p>This is 2nd p tag</p>
+    <script>
+        let parent = document;
+        let head = parent.head;
+        let body = parent.body;
+
+        let bodychild = body.childNodes;
+        let bodychildren = body.children;
+
+        let firstchild = body.firstElementChild;
+        let lastchild = body.lastElementChild;
+
+        let nextsibling = firstchild.nextElementSibling;
+
+        let previoussibling = nextsibling.previousElementSibling;
+        console.log(previoussibling);
+    </script>
+</body>
+</html>

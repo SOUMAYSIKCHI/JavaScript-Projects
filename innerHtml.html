@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+
+    <div>
+        <h1 id="heading">DOM API</h1>
+        <ul class="ul-list">
+            <li>1</li>
+            <li>2</li>
+            <li>3</li>
+            <li>4</li>
+            <!-- comment  -->
+            <li style="display: none">5</li>
+        </ul>
+    </div>
+
+    <div>
+        <h1>DOM API 2</h1>
+        <input type="text" />
+        <button>click me</button>
+        <div class="value"></div>
+    </div>
+
+    <script>
+        let findElementbyId = document.getElementById('heading');
+
+        const findElementByClassName =
+        document.getElementsByClassName("ul-list");
+
+         for (let elem of findElementByClassName) {
+        console.log(elem.innerHTML);
+        console.log(elem.innerText);
+        console.log(elem.textContent);
+      }
+
+        // console.log(...findElementByClassName);
+        // console.log(...findElementByClassName.innerHTML);
+    </script>
+</body>
+
+</html>
